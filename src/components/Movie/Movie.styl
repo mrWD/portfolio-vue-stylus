@@ -1,0 +1,120 @@
+.movie
+  display flex
+
+  &__bg
+    position fixed
+    top 0
+    bottom 0
+    left 0
+    right 0
+    background-position top center
+    background-size cover
+    background-repeat no-repeat
+    filter blur(10px)
+
+  &__img
+    display block
+    max-width 100%
+    margin-left auto
+    margin-right auto
+    margin-bottom 10px
+
+    @media (min-width 768px)
+      float left
+      width 37.5%
+      margin-left 0
+      margin-right 20px
+
+  &__content-wrapper
+    position relative
+    margin-bottom 10px
+    padding 0 10px
+
+    @media (min-width 768px)
+      width 60%
+
+    @media (min-width 1024px)
+      width 70%
+
+  &__content
+    padding 10px
+    border-radius 3px
+    background-color rgba(255, 255, 255, 0.5)
+    color #3e3e3e
+    text-shadow none
+
+    &:after
+      display block
+      clear both
+      content ''
+
+  &__title
+    font-size 22px
+
+    @media (min-width 1024px)
+      font-size 30px
+
+  &__params
+    display flex
+    justify-content space-between
+    align-items center
+    margin-bottom 10px
+
+  &__params-text
+    margin-top 0
+    margin-bottom 0
+    font-size 15px
+    text-transform capitalize
+
+  &__participants
+    margin-top 0
+    margin-bottom 10px
+    padding-top 10px
+    padding-left 0
+
+  &__text
+    margin-top 0
+    margin-bottom 0
+    display block
+
+    &--marked
+      font-weight 600
+
+  &__contacts
+    margin-bottom 10px
+
+  &__link
+    display inline-block
+    margin-bottom 10px
+    font-size 20px
+    font-weight 600
+    text-decoration none
+    color #012968
+
+  &__description
+    margin-top 0
+    margin-bottom 0
+    font-size 18px
+    font-weight 600
+
+    @media (min-width 1024px)
+      font-size 20px
+
+  &__sidebar-wrapper
+    position relative
+    width 100%
+    margin-bottom 10px
+    padding 0 10px
+
+    @media (min-width 768px)
+      width 40%
+
+    @media (min-width 1024px)
+      width 30%
+
+  &__sidebar
+    padding 10px
+    border-radius 3px
+    background-color rgba(255, 255, 255, 0.5)
+    color #3e3e3e
+    text-shadow none

@@ -1,0 +1,61 @@
+.loader
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+  display flex
+  align-items center
+  justify-content center
+  background-color rgba(30, 30, 30, 0.5)
+
+  &__roller
+    position relative
+    width 64px
+    height 64px
+
+  &__dot
+    position absolute
+    top 27px
+    width 21px
+    height 21px
+    border-radius 50%
+    background #fff
+    animation-timing-function cubic-bezier(0, 1, 1, 0)
+
+    &:nth-child(1)
+      left 6px
+      animation zoom-in 0.6s infinite
+
+    &:nth-child(2)
+      left 11px
+      animation move-right 0.6s infinite
+
+    &:nth-child(3)
+      left 52px
+      animation move-right 0.6s infinite
+
+    &:nth-child(4)
+      left 91px
+      animation zoom-out 0.6s infinite
+
+@keyframes zoom-in
+  0%
+    transform scale(0)
+
+  100%
+    transform scale(1)
+
+@keyframes zoom-out
+  0%
+    transform scale(1)
+
+  100%
+    transform scale(0)
+
+@keyframes move-right
+  0%
+    transform translate(0, 0)
+
+  100%
+    transform translate(40px, 0)
