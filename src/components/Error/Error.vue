@@ -1,9 +1,7 @@
-<template>
-  <div class="error">
-    <div class="error__content">
-      <p class="error__text">{{ error }}</p>
-    </div>
-  </div>
+<template lang="pug">
+  .error
+    .error__content
+      .error__text {{ error }}
 </template>
 
 <script src="./Error.js"></script>

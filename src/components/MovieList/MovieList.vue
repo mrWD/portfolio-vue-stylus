@@ -1,19 +1,12 @@
-<template>
-  <div class="container">
-    <error v-if="error" :error="error"></error>
+<template lang="pug">
+  .container
+    error(v-if='error', :error='error')
 
-    <loader v-if="loading"></loader>
+    loader(v-if='loading')
 
-    <div class="row" v-if="!error && !loading">
-      <div
-        class="column"
-        v-for="(movie, key) in moviesList"
-        :key="key"
-        >
-        <card :movie="movie"></card>
-      </div>
-    </div>
-  </div>
+    .row(v-if='!error && !loading')
+      .column(v-for='(movie, key) in moviesList', :key='key')
+        card(:movie='movie')
 </template>
 
 <script src="./MovieList.js"></script>

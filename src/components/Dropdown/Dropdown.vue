@@ -1,33 +1,15 @@
-<template>
-  <div class="dropdown" ref="dropdown">
-    <button
-        class="dropdown__btn"
-        type="button"
-        @click="toggleDropdown"
-      >
-      {{ defaultValue }}
-    </button>
+<template lang="pug">
+  .dropdown(ref='dropdown')
+    button.dropdown__btn(type='button', @click='toggleDropdown')
+      | {{ defaultValue }}
 
-    <div :class="`dropdown__option-list ${isOpen ? 'is-open' : ''}`">
-      <label
-        class="dropdown__option"
-        v-for="(option, i) in $props.options"
-        :key="i"
-        >
-        <input
-          class="dropdown__radio"
-          type="radio"
-          :name="$props.name"
-          :value="option.value"
-          @change="() => changeHandler(option)"
-        >
+    .dropdown__option-list(:class="{ 'is-open': isOpen}")
+      label.dropdown__option(v-for='(option, i) in $props.options', :key='i')
+        input.dropdown__radio(type='radio', :name='$props.name', :value='option.value', @change='() => changeHandler(option)')
 
-        <span class="dropdown__option-name">
-          {{ option.label }}
-        </span>
-      </label>
-    </div>
-  </div>
+        span.dropdown__option-name
+          | {{ option.label }}
+
 </template>
 
 <script src="./Dropdown.js"></script>

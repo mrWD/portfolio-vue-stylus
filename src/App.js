@@ -64,9 +64,5 @@ export default {
       this.sortBy = value
       this.isAscending = isAscending
     },
-
-    test() {
-
-    }
   }
 }

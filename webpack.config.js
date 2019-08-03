@@ -15,6 +15,20 @@ module.exports = {
         use: 'vue-loader'
       },
       {
+        test: /\.pug$/,
+        oneOf: [
+          // это применяется к `<template lang="pug">` в компонентах Vue
+          {
+            resourceQuery: /^\?vue/,
+            use: ['pug-plain-loader']
+          },
+          // это применяется к импортам pug внутри JavaScript
+          {
+            use: ['pug-loader']
+          }
+        ]
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -33,7 +47,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.pug'
     }),
     new VueLoaderPlugin()
   ],

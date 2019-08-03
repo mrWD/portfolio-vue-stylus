@@ -1,202 +1,90 @@
-<template>
-  <div class="">
-    <div class="movie">
-      <error v-if="error" :error="error"></error>
+<template lang="pug">
+  .movie
+    error(v-if='error', :error='error')
 
-      <loader v-if="loading"></loader>
+    loader(v-if='loading')
 
-      <div class="container" v-if="!error && !loading">
-        <div class="movie__bg" :style="{ backgroundImage: `url(${poster})`}"></div>
+    .container(v-if='!error && !loading')
+      .movie__bg(:style='{ backgroundImage: `url(${poster})`}')
+      
+      .row
+        .movie__content-wrapper
+          main.movie__content
+            img.movie__img(
+                :src='poster',
+                :alt='movie.Title',
+                width='300',
+                @error='imageHandlerError',
+              )
+            
+            h1.movie__title(v-if='isExist(movie.Title)')
+            
+            .movie__params(v-if='isExist(movie.Runtime, movie.Language, movie.Type)')
+              p.movie__params-text(v-if='isExist(movie.Type)')
+                | {{ movie.Type }}
+              
+              p.movie__params-text(v-if='isExist(movie.Language)')
+                | {{ movie.Language }}
 
-        <div class="row">
-          <div class="movie__content-wrapper">
-            <main class="movie__content">
-              <img
-                class="movie__img"
-                :src="poster"
-                :alt="movie.Title"
-                width="300"
-                @error="imageHandlerError"
-              >
+              p.movie__params-text(v-if='isExist(movie.Runtime)')
+                | {{ movie.Runtime }}
+                
+            P.movie__text.movie__text--marked(v-if='isExist(movie.Genre)')
+              | {{ movie.Genre }}
+              
+            ul.movie__participants(v-if='isExist(movie.Writer, movie.Production, movie.Director, movie.Actors)')
+              li.movie__text(v-if='isExist(movie.Writer)')
+                | Writer: {{ movie.Writer }}
+              
+              li.movie__text(v-if='isExist(movie.Production)')
+                | Production: {{ movie.Production }}
+              
+              li.movie__text(v-if='isExist(movie.Director)')
+                | Director: {{ movie.Director }}
+              
+              li.movie__text(v-if='isExist(movie.Actors)')
+                | Actors: {{ movie.Actors }}
+            
+            p.movie__description(v-if='isExist(movie.Plot)')
+              | {{ movie.Plot }}
+        
+        .movie__sidebar-wrapper
+          aside.movie__sidebar
+            address.movie__contacts(v-if='isExist(movie.Country, movie.Website)')
+              a.movie__link(:href='movie.Website', v-if='isExist(movie.Website)')
+                | Official Page
+                
+              p.movie__text(v-if='isExist(movie.Country)')
+                | {{ movie.Country }}
+            
+            p.movie__text.movie__text--marked(v-if='isExist(movie.BoxOffice)')
+              | Box Office: {{ movie.BoxOffice }}
+          
+            p.movie__text.movie__text--marked(v-if='isExist(movie.Awards)')
+              | Awards: {{ movie.Awards }}
+            
+            ul.movie__participants(v-if='isExist(movie.Released, movie.DVD)')
+              li.movie__text(v-if='isExist(movie.Released)')
+                time(datetime='movie.Released') 
+                  | Released: {{ movie.Released }}
+                  
+              li.movie__text(v-if='isExist(movie.DVD)')
+                time(datetime='movie.DVD') 
+                  | Released on DVD: {{ movie.DVD }}
 
-              <h1
-                class="movie__title"
-                v-if="isExist(movie.Title)"
-                >
-                {{ movie.Title }}
-              </h1>
-
-              <div
-                class="movie__params"
-                v-if="isExist(movie.Runtime, movie.Language, movie.Type)"
-                >
-                <p
-                  class="movie__params-text"
-                  v-if="isExist(movie.Type)"
-                  >
-                  {{ movie.Type }}
-                </p>
-
-                <p
-                  class="movie__params-text"
-                  v-if="isExist(movie.Language)"
-                  >
-                  {{ movie.Language }}
-                </p>
-
-                <p
-                  class="movie__params-text"
-                  v-if="isExist(movie.Runtime)"
-                  >
-                  {{ movie.Runtime }}
-                </p>
-              </div>
-
-              <p
-                class="movie__text movie__text--marked"
-                v-if="isExist(movie.Genre)"
-                >
-                {{ movie.Genre }}
-              </p>
-
-              <ul
-                class="movie__participants"
-                v-if="isExist(movie.Writer, movie.Production, movie.Director, movie.Actors)">
-                <li
-                  class="movie__text"
-                  v-if="isExist(movie.Writer)"
-                  >
-                  Writer: {{ movie.Writer }}
-                </li>
-
-                <li
-                  class="movie__text"
-                  v-if="isExist(movie.Production)"
-                  >
-                  Production: {{ movie.Production }}
-                </li>
-
-                <li
-                  class="movie__text"
-                  v-if="isExist(movie.Director)"
-                  >
-                  Director: {{ movie.Director }}
-                </li>
-
-                <li
-                  class="movie__text"
-                  v-if="isExist(movie.Actors)"
-                  >
-                  Actors: {{ movie.Actors }}
-                </li>
-              </ul>
-
-              <p
-                class="movie__description"
-                v-if="isExist(movie.Plot)"
-                >
-                {{ movie.Plot }}
-              </p>
-            </main>
-          </div>
-
-          <div class="movie__sidebar-wrapper">
-            <aside class="movie__sidebar">
-              <address class="movie__contacts" v-if="isExist(movie.Country, movie.Website)">
-                <a
-                  class="movie__link"
-                  :href="movie.Website"
-                  v-if="isExist(movie.Website)"
-                  >
-                  Official Page
-                </a>
-
-                <p
-                  class="movie__text"
-                  v-if="isExist(movie.Country)"
-                  >
-                  {{ movie.Country }}
-                </p>
-              </address>
-
-              <p
-                class="movie__text movie__text--marked"
-                v-if="isExist(movie.BoxOffice)"
-                >
-                Box Office: {{ movie.BoxOffice }}
-              </p>
-
-              <p
-                class="movie__text movie__text--marked"
-                v-if="isExist(movie.Awards)"
-                >
-                Awards: {{ movie.Awards }}
-              </p>
-
-              <ul
-                class="movie__participants"
-                v-if="isExist(movie.Released, movie.DVD)"
-                >
-                <li
-                  class="movie__text"
-                  v-if="isExist(movie.Released)"
-                  >
-                  <time>Released: {{ movie.Released }}</time>
-                </li>
-
-                <li
-                  class="movie__text"
-                  v-if="isExist(movie.DVD)"
-                  >
-                  <time>Released on DVD: {{ movie.DVD }}</time>
-                </li>
-              </ul>
-
-              <ul
-                class="movie__participants"
-                v-if="isExist(movie.imdbRating, movie.Rated, movie.Metascore, movie.Awards)"
-                >
-                <li
-                  class="movie__text movie__text--marked"
-                  v-if="isExist(movie.imdbRating)"
-                  >
-                  IMDB Rating: {{ movie.imdbRating }}
-                </li>
-
-                <li
-                  class="movie__text movie__text--marked"
-                  v-if="isExist(movie.Rated)"
-                  >
-                  Rated: {{ movie.Rated }}
-                </li>
-
-                <li
-                  class="movie__text movie__text--marked"
-                  v-if="isExist(movie.Metascore)"
-                  >
-                  Metascore: {{ movie.Metascore }}
-                </li>
-              </ul>
-
-              <ul
-                class="movie__participants"
-                v-if="movie.Ratings && movie.Ratings.length"
-                >
-                <li
-                  class="movie__text"
-                  v-for="(index, key) in movie.Ratings"
-                  :key="key"
-                  >
-                  {{ index.Source }}
-                  {{ index.Value }}
-                </li>
-              </ul>
-            </aside>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            ul.movie__participants(v-if='isExist(movie.imdbRating, movie.Rated, movie.Metascore, movie.Awards)')
+              li.movie__text.movie__text--marked(v-if='isExist(movie.imdbRating)')
+                | IMDB Rating: {{ movie.imdbRating }}          
+                
+              li.movie__text.movie__text--marked(v-if='isExist(movie.Rated)')
+                | Rated: {{ movie.Rated }}                    
+                
+              li.movie__text.movie__text--marked(v-if='isExist(movie.Metascore)')
+                | Metascore: {{ movie.Metascore }}          
+            
+            ul.movie__participants(v-if='movie.Ratings && movie.Ratings.length')
+              li.movie__text(v-for='(index, key) in movie.Ratings', :key='key')      
+                | {{ index.Source }} {{ index.Value }}
 </template>
 
 <script src="./Movie.js"></script>
