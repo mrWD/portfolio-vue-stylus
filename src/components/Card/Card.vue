@@ -16,6 +16,6 @@
         p.card__year {{ movie.Type }}
 </template>
 
-<script src="./Card.js"></script>
+<script src="./Card.ts" lang="ts"></script>
 
-<style src="./Card.styl" lang="scss"></style>
+<style src="./Card.styl" lang="stylus"></style>

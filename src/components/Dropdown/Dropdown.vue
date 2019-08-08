@@ -12,6 +12,6 @@
 
 </template>
 
-<script src="./Dropdown.js"></script>
+<script src="./Dropdown.ts" lang="ts"></script>
 
-<style src="./Dropdown.styl" lang="scss"></style>
+<style src="./Dropdown.styl" lang="stylus"></style>

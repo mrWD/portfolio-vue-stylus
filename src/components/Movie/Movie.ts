@@ -1,50 +1,50 @@
+import Vue from 'vue'
+import { Movie } from './types'
 import loader from '../Loader/Loader.vue'
 import error from '../Error/Error.vue'
 import imgRoutes from '../../constants/imgRoutes'
 
-export default {
+export default Vue.extend({
   name: 'movie',
 
   components: { loader, error },
 
-  data: () => ({
-    poster: '',
-  }),
+  data() {
+    return {
+      poster: '',
+    }
+  },
 
-  mounted() {
+  mounted(): void {
     const { id } = this.$route.params
 
-    this.$store.dispatch('fetchMovie', { id })
+    this.$store.dispatch('fetchMovie', id)
   },
 
   computed: {
-    movie() {
+    movie(): Movie {
       const { movie } = this.$store.state.movies
       this.poster = movie.Poster
 
       return movie
     },
 
-    loading() {
+    loading(): boolean {
       return this.$store.state.movies.loading
     },
 
-    error() {
+    error(): object | string | null {
       return this.$store.state.movies.error
     },
   },
 
   methods: {
-    imageHandlerError() {
-      this.poster = this.setPoster()
+    imageHandlerError(): void {
+      this.poster = imgRoutes[this.movie.Type] || imgRoutes.default
     },
 
-    isExist() {
+    isExist(): boolean {
       return Array.from(arguments).some(item => item && item !== 'N/A')
     },
-
-    setPoster() {
-      return imgRoutes[this.movie.Type] || imgRoutes.default
-    },
   },
-}
+})

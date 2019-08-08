@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import store from './stores/index'
-import router from './router/index'
+import store from './stores'
+import router from './router'
 
 import App from './App.vue'
 

@@ -4,6 +4,6 @@
       .error__text {{ error }}
 </template>
 
-<script src="./Error.js"></script>
+<script src="./Error.ts" lang="ts"></script>
 
-<style src="./Error.styl" lang="scss"></style>
+<style src="./Error.styl" lang="stylus"></style>

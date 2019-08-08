@@ -87,6 +87,6 @@
                 | {{ index.Source }} {{ index.Value }}
 </template>
 
-<script src="./Movie.js"></script>
+<script src="./Movie.ts" lang="ts"></script>
 
-<style src="./Movie.styl" lang="scss"></style>
+<style src="./Movie.styl" lang="stylus"></style>

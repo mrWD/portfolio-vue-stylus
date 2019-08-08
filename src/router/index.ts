@@ -1,11 +1,13 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import MovieList from '../components/MovieList/MovieList.vue'
 import Movie from '../components/Movie/Movie.vue'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
+  mode: 'history',
+
   routes: [
     {
       path: '/',

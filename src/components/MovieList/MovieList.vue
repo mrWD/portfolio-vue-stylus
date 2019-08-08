@@ -9,4 +9,4 @@
         card(:movie='movie')
 </template>
 
-<script src="./MovieList.js"></script>
+<script src="./MovieList.ts" lang="ts"></script>

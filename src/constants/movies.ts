@@ -1,0 +1,7 @@
+export const FETCH_MOVIES_LIST: string = 'FETCH_MOVIES_LIST'
+export const FETCH_MOVIES_LIST_SUCCESS: string = 'FETCH_MOVIES_LIST_SUCCESS'
+export const FETCH_MOVIES_LIST_ERROR: string = 'FETCH_MOVIES_LIST_ERROR'
+
+export const FETCH_MOVIE: string = 'FETCH_MOVIE'
+export const FETCH_MOVIE_SUCCESS: string = 'FETCH_MOVIE_SUCCESS'
+export const FETCH_MOVIE_ERROR: string = 'FETCH_MOVIE_ERROR'

@@ -1,10 +1,11 @@
+import Vue from 'vue'
 import imgRoutes from '../../constants/imgRoutes'
 
-export default {
+export default Vue.extend({
   name: 'card',
   props: ['movie'],
   methods: {
-    imageHandlerError(e) {
+    imageHandlerError(e: any) {
       const imgRoute = imgRoutes[this.$props.movie.Type] || imgRoutes.default
 
       if (e.target.src.includes(imgRoute)) return
@@ -12,4 +13,4 @@ export default {
       e.target.src = imgRoute
     },
   }
-}
+})

@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'index_bundle.js'
@@ -25,6 +25,11 @@ module.exports = {
             use: ['pug-loader']
           }
         ]
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.js$/,
@@ -50,6 +55,7 @@ module.exports = {
     new VueLoaderPlugin()
   ],
   resolve: {
+    extensions: ['.ts', '.js'],
     alias: {
       vue: 'vue/dist/vue.esm.js',
     },

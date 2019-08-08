@@ -35,9 +35,9 @@
         
             p.search__text We found {{moviesList.length}} results
     
-    router-view(:moviesList='moviesList')        
+    router-view(:moviesList='moviesList')
 </template>
 
-<script src="./App.js"></script>
+<script src="./App.ts" lang="ts"></script>
 
-<style src="./App.styl"></style>
+<style src="./App.styl" lang="stylus"></style>
