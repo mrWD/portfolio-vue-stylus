@@ -27,7 +27,7 @@ export default Vue.extend({
   mounted() {
     const search = this.searchInput
 
-    this.$store.dispatch('fetchMovieList', search)
+    this.$store.dispatch('movies/fetchMovieList', search)
   },
 
   computed: {
@@ -55,7 +55,7 @@ export default Vue.extend({
 
       const search = this.searchInput
 
-      this.$store.dispatch('fetchMovieList', search)
+      this.$store.dispatch('movies/fetchMovieList', search)
 
       this.$router.push('/')
     },
@@ -68,5 +68,5 @@ export default Vue.extend({
       this.sortBy = value
       this.isAscending = isAscending
     },
-  }
+  },
 })

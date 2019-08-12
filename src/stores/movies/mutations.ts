@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex'
 import { MoviesState, ErrorPayload, MoviesPayload } from './types'
-import { FETCH_MOVIES_LIST, FETCH_MOVIES_LIST_SUCCESS, FETCH_MOVIES_LIST_ERROR } from '../../constants/movies'
+import { FETCH_MOVIES_LIST, FETCH_MOVIES_LIST_SUCCESS, FETCH_MOVIES_LIST_ERROR } from '@/constants/movies'
 
 const mutations: MutationTree<MoviesState> = {
   [FETCH_MOVIES_LIST](state): void {

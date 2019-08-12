@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import { Movie } from './types'
-import loader from '../Loader/Loader.vue'
-import error from '../Error/Error.vue'
-import imgRoutes from '../../constants/imgRoutes'
+import loader from '@/components/Loader/Loader.vue'
+import error from '@/components/Error/Error.vue'
+import imgRoutes from '@/constants/imgRoutes'
 
 export default Vue.extend({
   name: 'movie',
@@ -15,26 +15,24 @@ export default Vue.extend({
     }
   },
 
-  mounted(): void {
-    const { id } = this.$route.params
-
-    this.$store.dispatch('fetchMovie', id)
+  mounted() {
+    this.$store.dispatch('movie/fetchMovie', this.$route.params.id)
   },
 
   computed: {
     movie(): Movie {
-      const { movie } = this.$store.state.movies
-      this.poster = movie.Poster
+      const { movie } = this.$store.state.movie
+      this.poster = movie && movie.Poster
 
-      return movie
+      return movie || {}
     },
 
     loading(): boolean {
-      return this.$store.state.movies.loading
+      return this.$store.state.movie.loading
     },
 
-    error(): object | string | null {
-      return this.$store.state.movies.error
+    error(): string | null {
+      return this.$store.state.movie.error
     },
   },
 

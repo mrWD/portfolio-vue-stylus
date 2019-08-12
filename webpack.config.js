@@ -1,6 +1,13 @@
+const webpack = require('webpack');
+const env = require('dotenv').config().parsed;
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+const envKeys = Object.keys(env).reduce((result, currentKey) => ({ 
+  ...result,
+  [currentKey]: JSON.stringify(env[currentKey]),
+}), {});
 
 module.exports = {
   entry: './src/index.ts',
@@ -35,7 +42,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       },
       {
@@ -49,6 +59,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': envKeys
+    }),
     new HTMLWebpackPlugin({
       template: './src/index.pug'
     }),
@@ -58,6 +71,7 @@ module.exports = {
     extensions: ['.ts', '.js'],
     alias: {
       vue: 'vue/dist/vue.esm.js',
+      '@': path.resolve(__dirname, 'src/')
     },
-  },
+  }
 }

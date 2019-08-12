@@ -1,5 +1,5 @@
 import { Module } from 'vuex'
-import { RootState } from '../types'
+import { RootState } from '@/stores/types'
 import { MoviesState } from './types'
 import mutations from './mutations'
 import actions from './actions'

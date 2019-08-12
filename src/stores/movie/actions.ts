@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { ActionTree } from 'vuex'
-import { RootState } from '../types'
+import { RootState } from '@/stores/types'
 import { MovieState, MoviePayload } from './types'
-import { FETCH_MOVIE, FETCH_MOVIE_SUCCESS, FETCH_MOVIE_ERROR } from '../../constants/movies'
+import { FETCH_MOVIE, FETCH_MOVIE_SUCCESS, FETCH_MOVIE_ERROR } from '@/constants/movies'
 
 const actions: ActionTree<MovieState, RootState>= {
   fetchMovie({ commit }, id: string): void {
     commit(FETCH_MOVIE)
 
-    axios.get(`http://www.omdbapi.com/?apikey=c3d3af33&i=${id}`)
+    axios.get(`${process.env.URL}?apikey=${process.env.API_KEY}&i=${id}`)
       .then(response => {
         if (response.status < 500) {
           return response

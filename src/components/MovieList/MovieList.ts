@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import card from '../Card/Card.vue'
-import loader from '../Loader/Loader.vue'
-import error from '../Error/Error.vue'
+import card from '@/components/Card/Card.vue'
+import loader from '@/components/Loader/Loader.vue'
+import error from '@/components/Error/Error.vue'
 
 export default Vue.extend({
   name: 'movielist',

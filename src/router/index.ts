@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MovieList from '../components/MovieList/MovieList.vue'
-import Movie from '../components/Movie/Movie.vue'
+import MovieList from '@/components/MovieList/MovieList.vue'
+import Movie from '@/components/Movie/Movie.vue'
 
 Vue.use(VueRouter)
 

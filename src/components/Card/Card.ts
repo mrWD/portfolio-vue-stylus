@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import imgRoutes from '../../constants/imgRoutes'
+import imgRoutes from '@/constants/imgRoutes'
 
 export default Vue.extend({
   name: 'card',
